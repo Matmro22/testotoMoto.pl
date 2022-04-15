@@ -33,7 +33,6 @@ CheckUserStatistics
     Input Username      testerekoprogramowanka@gmail.com
     Input Password      Hasse1ko
     Click Login
-    Verify User Is Logged
     Go To Statistics Section
     Click 30 Days Button
     Click 7 Days Button
@@ -54,7 +53,6 @@ CheckUserAnnouncements
     Input Username      testerekoprogramowanka@gmail.com
     Input Password      Hasse1ko
     Click Login
-    Verify User Is Logged
     Go To Announcements Section
     Check Cars Announcements
     Check Parts Announcements
@@ -78,8 +76,6 @@ CheckUserMessages
     Check Archive Messages
     Check Bought Messages
     Check Sold Messages
-    Logout
-    Check If Logged Out
 
 CheckUserPayments
     [tags]  Smoke
@@ -93,9 +89,9 @@ CheckUserPayments
     Verify User Is Logged
     Go To Payments Section
     Check Payments Operation
-    Check Invoices
+#    Check Invoices
     Check Add Points
-    Check History Of Payments
+#    Check History Of Payments
     Logout
     Check If Logged Out
 
@@ -108,10 +104,9 @@ ChangeContactDetails
     Input Username      testerekoprogramowanka@gmail.com
     Input Password      Hasse1ko
     Click Login
-    Verify User Is Logged
-    Go To Settings Section Section
-    Choose Country                  Polska
-    Add Post Code And City          87-800 Włocławek
+    Go To Settings Section
+    Change Contact Details
+    Choose Country                  Niemcy
     Add Name Of The Owner           Mateusz Mroczkowski
     Add Number Of The Owner         788295792
     Click Autocomplete Checkbox

@@ -30,6 +30,7 @@ Click Login
     Click Element  ${loginButton}
 
 Verify User Is Logged
+    Sleep   5s
     Wait Until Element Is Visible   ${loggedUserElement}
     Mouse Over    ${loggedUserElement}
     Element Should Be Visible    ${userAccountFrame}

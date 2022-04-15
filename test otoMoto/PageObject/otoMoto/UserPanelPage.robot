@@ -5,8 +5,8 @@ Library     SeleniumLibrary
 ${userStatisticsbutton}             //*[@id="se_statistics"]
 ${userAnnouncementsbutton}          //*[@id="siteWrap"]/div[1]/div/ul/li[2]/span
 ${userMessagesbutton}               //*[@id="se_accountAnswers"]
-${userPaymentsbutton}               //*[@id="__next"]/div/div/div/main/section/div[2]/a[4]
-${userSettingsbutton}               //*[@id="__next"]/div/div/div/main/section/div[2]/a[5]
+${userPaymentsbutton}               //a[@id='se_accountWallet']
+${userSettingsbutton}               //a[@id='se_accountShop']
 ${statistics7Daysbutton}            //*[@id="siteWrap"]/section/div[2]/div/div/div/div[1]/div[2]/button[1]
 ${statistics30Daysbutton}           //*[@id="siteWrap"]/section/div[2]/div/div/div/div[1]/div[2]/button[2]
 ${statistic1Overall}                //*[@id="uniqueImpressions-panel"]
@@ -25,33 +25,38 @@ ${userSecondOption}                 //*[@id="__next"]/div/div/div/main/section/d
 ${userThirdOption}                  //*[@id="__next"]/div/div/div/main/section/div[3]/a[3]
 ${userFourthOption}                 //*[@id="__next"]/div/div/div/main/section/div[3]/a[4]
 ${settingsChangeContactDetails}     //*[@id="siteWrap"]/section/div[3]/div/div/div[1]/div[1]
-${contactCountry}    Choose Country
-${contactCity}    Add Post Code And City
-${contactName}    Add Name Of The Owner
-${contactNumber}    Add Number Of The Owner
-   Click Autocomplete Checkbox
-    Save Details
+${contactCountry}                   //*[@id="geoCityCountry"]
+${contactName}                      //*[@id="changeDefaultContact"]/fieldset/div[3]/div/input
+${contactNumber}                    //body/div[@id='siteWrap']/section[1]/div[3]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[4]/div[1]/input[1]
+${autocompletecheckbox}             //body/div[@id='siteWrap']/section[1]/div[3]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[5]/div[1]/label[1]
+${savebutton}                       //*[@id="changeDefaultContactSubmit"]
 
 *** Keywords ***
 Go To Statistics Section
-    Wait Until Page Contain element   ${userStatisticsbutton}
+    Sleep   2s
+    Wait Until Page Contains Element   ${userStatisticsbutton}    timeout=10s
     Click Element   ${userStatisticsbutton}
 
 Go To Announcements Section
+    Sleep   2s
+    Wait Until Page Contains Element    ${userAnnouncementsbutton}      timeout=10s
     Mouse Over  ${userAnnouncementsbutton}
-    Page Should Contain Element   ${userAnnouncementsbutton}
     Click Element   ${userAnnouncementsbutton}
 
 Go To Messages Section
-    Wait Until Page Contain element   ${userMessagesbutton}
+    Sleep   2s
+    Wait Until Page Contains Element   ${userMessagesbutton}    timeout=10s
     Click Element   ${userMessagesbutton}
 
 Go To Payments Section
-    Wait Until Page Contain element   ${userPaymentsbutton}
+    Sleep   2s
+    Mouse Over  ${userPaymentsbutton}
+    Wait Until Page Contains Element   ${userPaymentsbutton}    timeout=10s
     Click Element   ${userPaymentsbutton}
 
 Go To Settings Section
-    Wait Until Page Contain element   ${userSettingsbutton}
+    Sleep   2s
+    Wait Until Page Contains Element   ${userSettingsbutton}    timeout=10s
     Click Element   ${userSettingsbutton}
 
 Click 7 Days Button
@@ -146,16 +151,26 @@ Change Contact Details
 
 Choose Country
     [Arguments]     ${country}
-
-Add Post Code And City
-    [Arguments]     ${city}
+    Wait Until Element Is Visible   ${contactCountry}
+    Set Focus To Element    ${contactCountry}
+    Select From List By Label   ${contactCountry}       ${country}
 
 Add Name Of The Owner
     [Arguments]     ${name}
+    Wait Until Element Is Visible   ${contactName}
+    Click Element   ${contactName}
+    Input Text  ${contactName}   ${name}
 
 Add Number Of The Owner
     [Arguments]     ${number}
+    Wait Until Element Is Visible   ${contactNumber}
+    Click Element   ${contactNumber}
+    Input Text  ${contactNumber}   ${number}
 
 Click Autocomplete Checkbox
+    Wait Until Element Is Visible   ${autocompletecheckbox}
+    Click Element   ${autocompletecheckbox}
 
 Save Details
+    Wait Until Element Is Visible   ${savebutton}
+    Click Element   ${savebutton}

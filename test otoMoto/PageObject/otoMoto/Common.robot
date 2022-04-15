@@ -5,7 +5,7 @@ Variables       ../../Resources/Variables/Variables.py
 *** Variables ***
 ${acceptCookieButton}     //button[@id='onetrust-accept-btn-handler']
 ${logoutButton}           //a[@id='login-box-logout']
-${userAccountFrame}       //a[@id='topLoginLink']
+${userAccountFrame}       //*[@id="topLoginLink"]
 ${loginUserButton}        //a[contains(text(),'Zaloguj się')]
 
 *** Keywords ***
@@ -18,8 +18,9 @@ Accepting Cookies
     Click Element  ${acceptCookieButton}
 
 Logout
-    Sleep   2s
-    Wait Until Element Is Visible  ${userAccountFrame}
+    Sleep   3s
+    Wait Until Element Is Visible  ${userAccountFrame}  timeout=5s
+    Sleep   1s
     Mouse Over  ${userAccountFrame}
     Wait Until Element Is Visible  ${logoutButton}
     Click Element  ${logoutButton}

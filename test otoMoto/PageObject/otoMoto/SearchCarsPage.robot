@@ -8,5 +8,6 @@ ${adSearchCarPage}           //*[@id="trigger-0"]
 
 *** Keywords ***
 Verify Search Cars Page Is Open
+    Sleep   5s
     Wait Until Page Contains Element    ${searchCarFilter}      timeout=5s
-    Page Should Contain Element   ${adSearchCarPage}
+    Page Should Contains Element   ${adSearchCarPage}
